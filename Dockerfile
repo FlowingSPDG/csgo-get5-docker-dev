@@ -20,7 +20,7 @@ LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.url="https://volzit.de" \
       org.label-schema.vcs-ref=$SOURCE_COMMIT \
       org.label-schema.vendor="volzit" \
-      org.label-schema.description="Docker image for deploying a dev CS:GO server for Get5" \
+      org.label-schema.description="Docker image for deploying a dev CS:GO server for Danger Zone" \
       org.label-schema.vcs-url="https://github.com/Apfelwurm/csgo-get5-docker"
 
 ###############
@@ -38,9 +38,7 @@ ENV HOME_DIR=/home/user \
     STEAMCMD_URL=https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz \
     STEAMWORKS_VER=1.2.3c \
     METAMOD_VER=1.12 \
-    SOURCEMOD_VER=1.11 \
-    GET5_VER=0.11.0-adeb187 \
-    GET5_APISTATS=FALSE
+    SOURCEMOD_VER=1.11
 
 WORKDIR $HOME_DIR
 COPY --chown=user --chmod=755 server-scripts/server-update.sh $HOME_DIR/

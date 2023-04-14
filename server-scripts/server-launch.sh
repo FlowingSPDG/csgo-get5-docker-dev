@@ -194,131 +194,6 @@ fi
 
 printf '%.s─' $(seq 1 $(tput cols))
 
-######################
-#     get get5       #
-######################
-
-mkdir -p /downloads/get5
-chown -R user:user /downloads
-
-GET5_HANDLED=FALSE
-
-if  [[ $GET5_VER == "" ]] ;
-then
-echo "missing GET5_VER. Exiting"
-exit 1
-fi
-
-
-if  [[ $GET5_VER == LOCAL ]] ;
-then
-    echo "use local get5" 
-    echo "copy files..." 
-    rsync -aq /localmounts/get5/addons/ $CSGO_DIR/csgo/addons
-    rsync -aq /localmounts/get5/cfg/ $CSGO_DIR/csgo/cfg
-    chown -R user:user $CSGO_DIR/csgo/addons
-    chown -R user:user $CSGO_DIR/csgo/cfg
-    GET5_HANDLED=TRUE
-fi
-
-if  [[ $GET5_HANDLED == FALSE ]]  ;
-then
-    GET5URL=FALSE
-    if  [[ $GET5_VER == http*.tar.gz ]] ;
-    then
-        echo "use url $GET5_VER of get5" 
-        GET5URL=$GET5_VER
-    fi
-    if  [[ $GET5_VER == LATEST ]];
-    then
-        echo "use latest get5" 
-        GET5URL=$(curl -s https://api.github.com/repos/splewis/get5/releases/latest | jq -r '.assets[] | select(.browser_download_url | endswith(".tar.gz")) | .browser_download_url')
-    fi
-    if  [[ $GET5_VER == LATEST-PRE ]];
-    then
-        echo "use latest-pre get5" 
-        GET5URL=$(curl -s https://api.github.com/repos/splewis/get5/releases| jq -r 'map(select(.prerelease)) | first | .assets[] | select(.browser_download_url | endswith(".tar.gz")) | .browser_download_url')
-    fi
-    if  [[ $GET5URL == FALSE ]];
-    then
-        echo "use version $GET5_VER of get5" 
-        GET5URL=$(curl -s https://api.github.com/repos/splewis/get5/releases/tags/v$GET5_VER | jq -r '.assets[] | select(.browser_download_url | endswith(".tar.gz")) | .browser_download_url')
-    fi
-    echo $GET5URL
-    echo "downloading..." 
-    su user -c " wget -q -O /downloads/get5.tar.gz $GET5URL"
-    if [ ! -s "/downloads/get5.tar.gz" ]; then
-        echo "get5.tar.gz does not exist. Do you entered a wrong version number?"
-        exit 1
-    else   
-        echo "copy files..." 
-        su user -c " tar xvzf /downloads/get5.tar.gz -C /downloads/get5 && \
-        rsync -aq /downloads/get5/addons/ $CSGO_DIR/csgo/addons && \
-        rsync -aq /downloads/get5/cfg/ $CSGO_DIR/csgo/cfg && \
-        rm -rf /downloads/get5 /downloads/get5.tar.gz" 
-        GET5_HANDLED=TRUE
-    fi
-fi
-
-
-
-
-if  [[ $GET5_HANDLED == FALSE ]] ;
-then
-    echo "get5 installation was not successful. Please check your GET5_VER env."
-    exit 1
-else
-    echo "get5 installation seems sucessful if no errors were reported."
-fi
-
-
-
-
-
-printf '%.s─' $(seq 1 $(tput cols))
-
-
-
-######################
-# get get5 apistats  #
-######################
-
-if  [[ ! $GET5_APISTATS == FALSE ]] && [[ ! $GET5_APISTATS == "" ]] ;
-then
-    GET5_APISTATS_HANDLED=FALSE
-
-    if  [[ $GET5_APISTATS == LOCAL ]] ;
-    then
-        echo "use local get5_apistats" 
-        echo "copy files..." 
-        rsync -aq /localmounts/get5_apistats/addons/ $CSGO_DIR/csgo/addons
-        rsync -aq /localmounts/get5_apistats/cfg/ $CSGO_DIR/csgo/cfg
-        chown -R user:user $CSGO_DIR/csgo/addons
-        chown -R user:user $CSGO_DIR/csgo/cfg
-        GET5_APISTATS_HANDLED=TRUE
-    fi
-
-
-    if  [[ $GET5_APISTATS_HANDLED == FALSE ]] ;
-    then
-        echo "moving get5_apistats plugin $GET5_APISTATS"
-        su user -c "mv $CSGO_DIR/csgo/addons/sourcemod/plugins/disabled/$GET5_APISTATS.smx $CSGO_DIR/csgo/addons/sourcemod/plugins/$GET5_APISTATS.smx" 
-        GET5_APISTATS_HANDLED=TRUE
-    fi
-
-    if  [[ $GET5_APISTATS_HANDLED == FALSE ]] ;
-    then
-        echo "get5 apistats installation was not successful. Please check your GET5_APISTATS env."
-        exit 1
-    else
-        echo "get5 apistats installation seems sucessful if no errors were reported."
-    fi
-
-
-fi
-
-
-printf '%.s─' $(seq 1 $(tput cols))
 
 ######################
 # copy configs       #
@@ -332,16 +207,6 @@ then
         chown -R user:user $CSGO_DIR/csgo/cfg
 	fi
 fi
-
-if [ -d "/localmounts/get5cfg" ]
-then
-	if [ "$(ls -A /localmounts/get5cfg)" ]; then
-        echo "Copy get5 configs..."
-        cp -rf /localmounts/get5cfg/* $CSGO_DIR/csgo/addons/sourcemod/configs/get5
-        chown -R user:user $CSGO_DIR/csgo/addons/sourcemod/configs/get5
-	fi
-fi
-
 
 
 printf '%.s─' $(seq 1 $(tput cols))
@@ -412,19 +277,19 @@ if [ -v MAXPLAYERS ]
 then
     ARGS="$ARGS -maxplayers_override $MAXPLAYERS"
 else
-    ARGS="$ARGS -maxplayers_override 10"
+    ARGS="$ARGS -maxplayers_override 20"
 fi
 if [ -v GAMETYPE ]
 then
     ARGS="$ARGS +game_type $GAMETYPE"
 else
-    ARGS="$ARGS +game_type 0"
+    ARGS="$ARGS +game_type 6"
 fi
 if [ -v GAMEMODE ]
 then
     ARGS="$ARGS +game_mode $GAMEMODE"
 else
-    ARGS="$ARGS +game_mode 1"
+    ARGS="$ARGS +game_mode 0"
 fi
 if [ -v MAPGROUP ]
 then
@@ -436,7 +301,7 @@ if [ -v MAP ]
 then
     ARGS="$ARGS +map $MAP"
 else
-    ARGS="$ARGS +map de_mirage"
+    ARGS="$ARGS +map dz_blacksite"
 fi
 if [ -v HOST_WORKSHOP_COLLECTION ]
 then
@@ -461,12 +326,7 @@ fi
 if [ -v CUSTOM_ARGS ]
 then
     ARGS="$ARGS $CUSTOM_ARGS"
-fi
-if [ -v MATCH_CONFIG ]
-then
-    echo $MATCH_CONFIG > $CSGO_DIR/csgo/match_config.json
-    chown user:user $CSGO_DIR/csgo/match_config.json
-    echo 'get5_autoload_config match_config.json' > $CSGO_DIR/csgo/cfg/sourcemod/get5.cfg
+fi 'get5_autoload_config match_config.json' > $CSGO_DIR/csgo/cfg/sourcemod/get5.cfg
 fi
 
 
