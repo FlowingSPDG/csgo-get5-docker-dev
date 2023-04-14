@@ -14,6 +14,10 @@ jobs:
   check-csgo-version:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
       - name: Fetch metadata from DockerHub
         id: fetch-metadata
         uses: theo-brown/fetch-dockerhub-metadata@v1
@@ -39,6 +43,16 @@ jobs:
                   (installed: ${{ steps.csgo-version.outputs.version }} / latest: $(echo $VERSION_CHECK | jq .required_version))."
             echo "CSVERSION=$(echo $VERSION_CHECK | jq .required_version)" >> $GITHUB_ENV
           fi
+      - name: create issue from file
+        uses: JasonEtco/create-an-issue@v2.8.0
+        id: issue
+        if: env.CSVERSION != 'FALSE'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NEXT_VERSION: ${{ env.CSVERSION }}
+        with:
+          filename: .github/templates/issue.newversion.md
+          update_existing: true
       - name: checkout
         if: env.CSVERSION != 'FALSE'
         uses: actions/checkout@v3
@@ -49,9 +63,9 @@ jobs:
         if: env.CSVERSION != 'FALSE'
         with:
           message: 'Versionupdate to ${{ env.CSVERSION }}'
-      - name: trigger update
-        if: env.CSVERSION != 'FALSE'
-        uses: peter-evans/repository-dispatch@v2
-        with:
-          repository: ${{ github.repository }}
-          event-type: update-image
+      # - name: trigger update
+      #   if: env.CSVERSION != 'FALSE'
+      #   uses: peter-evans/repository-dispatch@v2
+      #   with:
+      #     repository: ${{ github.repository }}
+      #     event-type: update-image
