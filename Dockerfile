@@ -14,7 +14,7 @@ FROM debian:buster-slim
 # Label this image with the image version and installed CSGO version
 # To get the version of the latest CSGO patch, run
 # curl -s "http://api.steampowered.com/ISteamApps/UpToDateCheck/v1?appid=730&version=0" | jq .response.required_version
-ARG CSGO_VERSION=13857
+ARG CSGO_VERSION=13879
 LABEL csgo_version=$CSGO_VERSION
 LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.url="https://volzit.de" \
@@ -39,7 +39,7 @@ ENV HOME_DIR=/home/user \
     STEAMWORKS_VER=1.2.3c \
     METAMOD_VER=1.12 \
     SOURCEMOD_VER=1.11 \
-    GET5_VER=0.11.0-adeb187 \
+    GET5_VER=0.14.7 \
     GET5_APISTATS=FALSE
 
 WORKDIR $HOME_DIR
@@ -49,6 +49,7 @@ RUN apt-get -qq update \
         lib32gcc1 \
         ca-certificates \
         wget \
+        curl \
         lib32stdc++6 \
         unzip \
         rsync \
