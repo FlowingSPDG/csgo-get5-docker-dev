@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  DOCKER_REPO: 'apfelwurm/csgo-get5-docker-dev'
+  DOCKER_REPO: 'flowingspdg/csgo-get5-docker-dev'
 
 jobs:
   check-csgo-version:

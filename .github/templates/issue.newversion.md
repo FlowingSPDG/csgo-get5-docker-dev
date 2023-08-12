@@ -1,7 +1,7 @@
 ---
 title: "New csgo version {{ env.NEXT_VERSION }}"
 about: 'New csgo version {{ env.NEXT_VERSION }}'
-assignees: 'Apfelwurm'
+assignees: 'FlowingSPDG'
 labels:
     - "dependencies"
 ---

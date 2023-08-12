@@ -3,7 +3,7 @@
 #######################################################
 ##  Dev Docker image containing CSGO srcds with Get5 ##
 #######################################################
-#    github.com/Apfelwurm/csgo-get5docker-dev         #
+#    github.com/FlowingSPDG/csgo-get5docker-dev         #
 #######################################################
 
 FROM debian:buster-slim
@@ -21,7 +21,7 @@ LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.vcs-ref=$SOURCE_COMMIT \
       org.label-schema.vendor="volzit" \
       org.label-schema.description="Docker image for deploying a dev CS:GO server for Get5" \
-      org.label-schema.vcs-url="https://github.com/Apfelwurm/csgo-get5-docker"
+      org.label-schema.vcs-url="https://github.com/FlowingSPDG/csgo-get5-docker"
 
 ###############
 # CREATE USER #
@@ -39,7 +39,7 @@ ENV HOME_DIR=/home/user \
     STEAMWORKS_VER=1.2.3c \
     METAMOD_VER=1.12 \
     SOURCEMOD_VER=1.11 \
-    GET5_VER=0.14.7 \
+    GET5_VER=0.15.0 \
     GET5_APISTATS=FALSE
 
 WORKDIR $HOME_DIR

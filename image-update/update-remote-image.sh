@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOCKER_REPO="apfelwurm/csgo-get5-docker-dev"
+DOCKER_REPO="flowingspdg/csgo-get5-docker-dev"
 
 
 get_registry_csgo_version() {

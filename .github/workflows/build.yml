@@ -31,8 +31,8 @@ jobs:
           context: .
           file: ./Dockerfile
           tags: |
-            apfelwurm/csgo-get5-docker-dev:latest
-            apfelwurm/csgo-get5-docker-dev:${{ env.CSGOVERSION }}
+            flowingspdg/csgo-get5-docker-dev:latest
+            flowingspdg/csgo-get5-docker-dev:${{ env.CSGOVERSION }}
           no-cache: true
       - name: Login to DockerHub
         uses: docker/login-action@v2.1.0

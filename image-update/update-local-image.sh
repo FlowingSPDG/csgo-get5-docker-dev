@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOCKER_IMAGE="apfelwurm/csgo-get5-docker-dev:latest"
+DOCKER_IMAGE="flowingspdg/csgo-get5-docker-dev:latest"
 
 
 get_local_csgo_version() {

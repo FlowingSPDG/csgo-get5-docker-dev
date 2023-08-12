@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOCKER_REPO="apfelwurm/csgo-get5-docker-dev"
+DOCKER_REPO="flowingspdg/csgo-get5-docker-dev"
 NEW_TAG=$(curl -s 'http://api.steampowered.com/ISteamApps/UpToDateCheck/v1?appid=730&version=$1' | jq .response.required_version)
 
 if [ ! -f "Dockerfile" ]; then

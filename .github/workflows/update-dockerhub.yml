@@ -19,6 +19,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: apfelwurm/csgo-get5-docker-dev
+          repository: flowingspdg/csgo-get5-docker-dev
           short-description: "provides a CS:GO server to develop and test get5 (https://github.com/splewis/get5)"
           readme-filepath: ./README.md

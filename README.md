@@ -11,17 +11,17 @@
     </em>
 </p>
 <p align="center">
-    <a href="https://github.com/Apfelwurm/csgo-get5-docker-dev/blob/main/LICENSE">
-        <img src="https://img.shields.io/github/license/Apfelwurm/csgo-get5-docker-dev">
+    <a href="https://github.com/flowingspdg/csgo-get5-docker-dev/blob/main/LICENSE">
+        <img src="https://img.shields.io/github/license/flowingspdg/csgo-get5-docker-dev">
     </a>
-    <a href="https://github.com/Apfelwurm/csgo-get5-docker-dev/actions/workflows/check-latest-csgo-version.yml">
-        <img src="https://github.com/Apfelwurm/csgo-get5-docker-dev/actions/workflows/check-latest-csgo-version.yml/badge.svg">
+    <a href="https://github.com/flowingspdg/csgo-get5-docker-dev/actions/workflows/check-latest-csgo-version.yml">
+        <img src="https://github.com/flowingspdg/csgo-get5-docker-dev/actions/workflows/check-latest-csgo-version.yml/badge.svg">
     </a>    
-    <a href="https://github.com/Apfelwurm/csgo-get5-docker-dev/actions/workflows/update.yml">
-        <img src="https://github.com/Apfelwurm/csgo-get5-docker-dev/actions/workflows/update.yml/badge.svg">
+    <a href="https://github.com/flowingspdg/csgo-get5-docker-dev/actions/workflows/update.yml">
+        <img src="https://github.com/flowingspdg/csgo-get5-docker-dev/actions/workflows/update.yml/badge.svg">
     </a>
-    <a href="https://github.com/Apfelwurm/csgo-get5-docker-dev/actions/workflows/build.yml">
-        <img src="https://github.com/Apfelwurm/csgo-get5-docker-dev/actions/workflows/build.yml/badge.svg">
+    <a href="https://github.com/flowingspdg/csgo-get5-docker-dev/actions/workflows/build.yml">
+        <img src="https://github.com/flowingspdg/csgo-get5-docker-dev/actions/workflows/build.yml/badge.svg">
     </a>
 </p>
 
@@ -42,14 +42,14 @@ For further information please read [the docs](https://splewis.github.io/get5/de
 
 ### 2.1 Quickstart
 
-1. Download the image from [Docker hub](https://hub.docker.com/r/apfelwurm/csgo-get5-docker-dev):
+1. Download the image from [Docker hub](https://hub.docker.com/r/flowingspdg/csgo-get5-docker-dev):
 ```
-docker pull apfelwurm/csgo-get5-docker-dev:latest
+docker pull flowingspdg/csgo-get5-docker-dev:latest
 ```
 
 2. Launch a container:
 ```
-docker run --rm -it --network=host apfelwurm/csgo-get5-docker-dev:latest
+docker run --rm -it --network=host flowingspdg/csgo-get5-docker-dev:latest
 ```
 
 ### 2.2 Recommended Docker launch arguments
@@ -86,7 +86,7 @@ docker run --rm -it --network=host \
  -e GOTV_PASSWORD=gotvpass \
  -e GET5_VER=LOCAL\
  -v $PWD/builds/get5:/localmounts/get5 \
- apfelwurm/csgo-get5-docker-dev:latest
+ flowingspdg/csgo-get5-docker-dev:latest
 ```
 
 #### 2.3.2 Starting a server with a match config
@@ -121,14 +121,14 @@ docker run --rm -it --network=host \
                                          186841562108230104: 'electronic', \
                                          726408891643982724: 'Perfecto', \
                                          512316566954794515: 'flamie'}}}" \
- apfelwurm/csgo-get5-docker-dev:latest
+ flowingspdg/csgo-get5-docker-dev:latest
 ```
 
 ## 3. Environment variables
 
 Setting environment variables when starting a container allows you to manipulate the launch options of the server.
 
-For example, `docker run -it -e PASSWORD=1234 apfelwurm/csgo-get5-docker-dev:latest` will start a new server with password `1234` 
+For example, `docker run -it -e PASSWORD=1234 flowingspdg/csgo-get5-docker-dev:latest` will start a new server with password `1234` 
 by launching the server with `+sv_password 1234`. 
 
 All possible environment variables are displayed in the table below.
@@ -220,9 +220,9 @@ log the output to `/home/myuser/csgo-get5-docker-dev/cron.log`.
 
 #### 5.2.2 Version on DockerHub
 
-The workflow ["Uses latest CS:GO version"](https://github.com/Apfelwurm/csgo-get5-docker-dev/actions/workflows/check-csgo-version.yml)
+The workflow ["Uses latest CS:GO version"](https://github.com/flowingspdg/csgo-get5-docker-dev/actions/workflows/check-csgo-version.yml)
 checks that the version of CSGO on the image in the DockerHub registry matches the latest CS:GO patch released on Steam. If the versions missmatch, a issue is created here.
 
 I run the `image_update/update-image-remote.sh` locally if nessecary and as soon as the docker hub is updated, i'll close the corresponding issue.
 
-So if the image is already updated (which should happen soon after the release), you can simply run docker pull `apfelwurm/csgo-get5-docker-dev:latest` again to update.
+So if the image is already updated (which should happen soon after the release), you can simply run docker pull `flowingspdg/csgo-get5-docker-dev:latest` again to update.
