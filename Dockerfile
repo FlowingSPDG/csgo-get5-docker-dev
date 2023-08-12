@@ -78,12 +78,6 @@ RUN INSTALLED_VERSION="$(sed -rn 's/PatchVersion=([0-9]+).([0-9]+).([0-9]+).([0-
        exit 1; \
     fi
 
-################
-# INSTALL RCON #
-################
-
-FROM outdead/rcon:latest
-
 ############
 # RUN CSGO #
 ############
