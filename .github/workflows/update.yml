@@ -8,6 +8,7 @@ on:
     - 'Dockerfile'
   repository_dispatch:
     types: [update-image]
+  workflow_dispatch:
 
 
 jobs:
