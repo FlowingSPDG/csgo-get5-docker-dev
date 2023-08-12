@@ -7,7 +7,6 @@
 #######################################################
 
 FROM debian:buster-slim
-FROM outdead/rcon:latest
 
 ###################
 # LABELLING #
@@ -78,6 +77,12 @@ RUN INSTALLED_VERSION="$(sed -rn 's/PatchVersion=([0-9]+).([0-9]+).([0-9]+).([0-
        echo "ERROR: Please update the CSGO version label to match the installed version. Labelled: $CSGO_VERSION / Installed: $INSTALLED_VERSION" >&2; \
        exit 1; \
     fi
+
+################
+# INSTALL RCON #
+################
+
+FROM outdead/rcon:latest
 
 ############
 # RUN CSGO #
