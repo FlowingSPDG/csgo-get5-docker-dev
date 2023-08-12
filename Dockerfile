@@ -3,10 +3,11 @@
 #######################################################
 ##  Dev Docker image containing CSGO srcds with Get5 ##
 #######################################################
-#    github.com/FlowingSPDG/csgo-get5docker-dev         #
+#     github.com/FlowingSPDG/csgo-get5docker-dev      #
 #######################################################
 
 FROM debian:buster-slim
+FROM outdead/rcon:latest
 
 ###################
 # LABELLING #
