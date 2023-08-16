@@ -79,6 +79,11 @@ RUN INSTALLED_VERSION="$(sed -rn 's/PatchVersion=([0-9]+).([0-9]+).([0-9]+).([0-
     fi
 
 ############
+#  EXPOSE  #
+############
+EXPOSE 27015-27020/tcp 27015-27020/udp
+
+############
 # RUN CSGO #
 ############
 ENV UPDATE_ON_LAUNCH=1
