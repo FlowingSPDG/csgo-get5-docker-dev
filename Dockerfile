@@ -26,7 +26,7 @@ LABEL org.label-schema.schema-version="1.0" \
 ###############
 # CREATE USER #
 ###############
-RUN adduser -S user
+RUN adduser user
 
 ################
 # INSTALL CSGO #
