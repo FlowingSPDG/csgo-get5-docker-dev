@@ -9,21 +9,8 @@
     <em>
         Development container for get5
     </em>
-</p>
-<p align="center">
-    <a href="https://github.com/flowingspdg/csgo-get5-docker-dev/blob/main/LICENSE">
-        <img src="https://img.shields.io/github/license/flowingspdg/csgo-get5-docker-dev">
-    </a>
-    <a href="https://github.com/flowingspdg/csgo-get5-docker-dev/actions/workflows/check-latest-csgo-version.yml">
-        <img src="https://github.com/flowingspdg/csgo-get5-docker-dev/actions/workflows/check-latest-csgo-version.yml/badge.svg">
-    </a>    
-    <a href="https://github.com/flowingspdg/csgo-get5-docker-dev/actions/workflows/update.yml">
-        <img src="https://github.com/flowingspdg/csgo-get5-docker-dev/actions/workflows/update.yml/badge.svg">
-    </a>
-    <a href="https://github.com/flowingspdg/csgo-get5-docker-dev/actions/workflows/build.yml">
-        <img src="https://github.com/flowingspdg/csgo-get5-docker-dev/actions/workflows/build.yml/badge.svg">
-    </a>
-</p>
+
+# ⚠ This repository is no longer maintained ⚠
 
 ## 1. Introduction
 
